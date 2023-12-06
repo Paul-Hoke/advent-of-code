@@ -1,18 +1,14 @@
 package day1
 
 import (
-	"bufio"
-	"io"
-	"os"
-	"strconv"
-	"strings"
+  "bufio"
+  "io"
+  "os"
+  "strconv"
+  "strings"
 )
 
-func Hello() string {
-  return "Hello, world."
-}
-
-func GetIntFromFirstAndLast(input string)	int {
+func GetIntFromFirstAndLast(input string)  int {
   first := ""
   last := ""
   
