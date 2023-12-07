@@ -6,14 +6,18 @@ import "slices"
 import "os"
 import "bufio"
 import "io"
+import day2 "hoke.paul/advent-of-code/2023/day-2"
 
 type Card struct {
+  cardNumber int
   myNumbers []int
   winningNumbers []int
+  count int
 }
 
 func NewCard(input string) Card {
   
+  cardNumber := day2.ExtractRegexValue(input, `Card (?P<Value>[0-9]+)`)
   myNumbers := []int{}
   winningNumbers := []int{}
   
@@ -38,8 +42,10 @@ func NewCard(input string) Card {
   }
   
   return Card {
+    cardNumber: cardNumber,
     myNumbers: myNumbers,
     winningNumbers: winningNumbers,
+    count: 1,
   }
 }
 
@@ -57,6 +63,18 @@ func (card Card) GetPoints() int {
     }
   }
   return points
+}
+
+func (card Card) GetNumWinners() int {
+  
+  numWinners := 0
+  
+  for _, v := range card.myNumbers {
+    if slices.Contains(card.winningNumbers, v) {
+     numWinners++
+    }
+  }
+  return numWinners
 }
 
 func GetSumOfPointsFromAllCards(fileName string) int {
@@ -83,4 +101,43 @@ func GetSumOfPointsFromAllCards(fileName string) int {
 
   return result
   
+}
+
+func GetSumOAllProcessedCards(fileName string) int {
+  
+  result := 0
+  allCards := []Card{}
+  //allCards = make(map[int]Card)
+  
+  file, err := os.Open(fileName)
+  if err != nil {
+    panic(err)
+  }
+
+  defer file.Close()
+
+  reader := bufio.NewReader(file)
+
+  for {
+    line, _, err := reader.ReadLine()
+    if err == io.EOF {
+      break
+    }
+    card := NewCard(string(line))
+    allCards = append(allCards, card)
+  }
+  
+  for i, value := range allCards {
+    for j := 1; j <= value.GetNumWinners(); j++ {
+      currentCard := allCards[i + j]
+      currentCard.count += value.count
+      allCards[i + j] = currentCard
+    }
+  }
+  
+  for _, value := range allCards {
+    result += value.count
+  }
+  
+  return result
 }
