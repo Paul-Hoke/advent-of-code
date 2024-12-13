@@ -1,0 +1,29 @@
+<html>
+  <head>
+    <style>
+      body {
+        font-family: "Noto Sans Mono", monospace;
+      }
+    </style>
+    <script>
+      function sendit()
+      {
+        fetch("results.txt")
+          .then((res) => res.text())
+          .then((text) => {
+            // do something with "text"
+            document.body.innerText = text;
+          })
+          .catch((e) => console.error(e));
+        setTimeout(sendit, 50);
+      }
+      // Call sendit() the first time
+      setTimeout(sendit, 50);
+
+
+    </script>
+  </head>
+<body>
+
+</body>
+</html>
