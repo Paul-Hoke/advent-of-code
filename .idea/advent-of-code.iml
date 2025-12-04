@@ -6,6 +6,7 @@
       <sourceFolder url="file://$MODULE_DIR$/2022/java/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/2024/java/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/lib" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/2025/java/src" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
@@ -27,5 +28,6 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="commons-lang3-3.17.0" level="project" />
   </component>
 </module>

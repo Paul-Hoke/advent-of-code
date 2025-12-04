@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(tree:*)",
+      "Bash(dir /s /b /ad \"C:\\Users\\hokep\\git\\advent-of-code\")",
+      "Bash(find:*)",
+      "Bash(javac:*)",
+      "Bash(java:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
